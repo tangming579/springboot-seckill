@@ -1,8 +1,10 @@
 package com.tm.seckill.mapper;
 
 import com.tm.seckill.entity.SuccessKilled;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface SuccessKilledMapper {
     /**
      * 插入购买明细，可过滤重复
