@@ -7,20 +7,20 @@ import com.tm.seckill.entity.Seckill;
 import org.apache.ibatis.annotations.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-@Mapper
+@Component
 public class RedisMapper {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final JedisPool jedisPool;
+    @Autowired
+    private JedisPool jedisPool;
 
     private RuntimeSchema<Seckill> schema = RuntimeSchema.createFrom(Seckill.class);
-
-    public RedisMapper(String ip, int port) {
-        jedisPool = new JedisPool(ip, port);
-    }
 
     public Seckill getSeckill(long seckillId) {
         // redis操作逻辑
